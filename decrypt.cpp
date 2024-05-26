@@ -212,20 +212,12 @@ void decrypt() {
     result_matrix = xor_matrices(result_matrix, round_key_exp[0]);
     transpose_matrix(result_matrix);
 
-    print_matrix_hex(result_matrix);
-
     vector<unsigned char> plaintext;
     for(const auto& row :  result_matrix) {
         for(const unsigned char ch : row) {
             plaintext.push_back(ch);
         }
     }
-
-    for(auto ch : plaintext){
-        printf("%02X ", ch);
-    }
-
-    cout << 123 << endl;
 
     ofstream outputFile("decrypted_message.txt");
     if (outputFile.is_open()) {
@@ -234,7 +226,9 @@ void decrypt() {
         }
         outputFile.close();
         cout << "Расшифрованный текст успешно записан в файл decrypted_message.txt" << endl;
-    } else {
+    } 
+    
+    else {
         cout << "Не удалось открыть файл для записи" << endl;
     }
 }
